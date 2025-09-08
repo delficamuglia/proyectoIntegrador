@@ -1,5 +1,7 @@
 import React from 'react';
-import Home from "./Screens/Home/Home"
+import Home from "./screens/Home/Home"
+import Peliculas from "./screens/Peliculas/Peliculas"
+import Series from "./screens/Series/Series"
 import Header from "./Components/Header/Header"
 import { Route, Switch } from "react-router-dom"
 
@@ -9,6 +11,8 @@ function App() {
       <Header />
       <Switch>
         <Route path="/" component={Home} exact />
+        <Route path="/peliculas" component={Peliculas}  />
+        <Route path="/series" component={Series}  />
 
       </Switch>
 

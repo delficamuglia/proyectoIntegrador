@@ -11,7 +11,7 @@ function Header() {
       <ul className="logo">  
         <li> Agregar logo </li> 
          <li> <Link to="/"> Home </Link> </li>
-         <li>  <Link to='/favoritos'> Favoritos </Link></li>
+         <li> <Link to='/favoritos'> Favoritos </Link></li>
          <li> <Link to='/peliculas'> Peliculas </Link> </li>
          <li> <Link to='/series'> Series </Link> </li>
      </ul> 
