@@ -1,0 +1,70 @@
+/* Resets */
+*{
+    box-sizing: border-box;
+}
+ul,ol {
+    padding: 0;
+}
+li {
+    list-style-type:none;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+body {
+    font-family: Nunito;
+    margin: 0;
+    background-color: #eee;
+}
+
+/*Peliculas*/
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 20px 10px 20px;
+}
+.card-container .character-card {
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 0 20px;
+    color: #fff;
+}
+.character-card {
+    color: #777;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 24%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+}
+
+.character-card img{
+    width: 100%;
+    margin-bottom: 20px; 
+}
+
+.character-card p {
+    margin: 3px 0;
+}
+
+.character-card h2 {
+    margin: 2px 0;
+}
+
+.text {
+    color: grey;
+}
+
+.imagen {
+    width: 100%;
+}
+
+.popular {
+    margin-left: 20px;
+}
