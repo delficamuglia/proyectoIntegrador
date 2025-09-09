@@ -12,7 +12,7 @@ class PeliculasCards extends Component {
 
     render() {
         return (
-            <div className="character-card" >
+            <div className="pelicula" >
                 <img className= "imagen" src= {this.props.pelicula.poster_path} alt={this.props.pelicula.original_title}></img>
                 <h3 className="text ">{this.props.pelicula.original_title}</h3> {/*agregar que te mande al detalle*/}
                 <h4 className="text">{this.props.pelicula.overview}</h4> 

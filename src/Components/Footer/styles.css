@@ -1,0 +1,38 @@
+/* Resets */
+*{
+    box-sizing: border-box;
+}
+ul,ol {
+    padding: 0;
+}
+li {
+    list-style-type:none;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+body {
+    font-family: Nunito;
+    margin: 0;
+    background-color: #eee;
+}
+
+/* footer */
+.footer {
+    background-color: #dedede;
+    justify-content: center;   
+    justify-content: space-around;
+    padding: 10px 0;
+    color: #666;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.footer p {
+    margin: 0 10px;
+}
+

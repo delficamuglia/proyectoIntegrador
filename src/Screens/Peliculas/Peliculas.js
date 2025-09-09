@@ -9,7 +9,8 @@ class Peliculas extends Component {
       busqueda: "", //esta variable contendrá aquello que buscará el usuario en el formulario. 
       copiaDatos: [], //establecemos esta variable ya que cuando realizamos el filter en datos, si no guardamos una variable con los datos originales perderíamos los datos que trajimos en primer lugar. De esta manera, mantenemos los datos originales en copiaDatos.
       page: 1,
-      totalPages: ""
+      totalPages: "",
+      seleccionada: false
     }
   }
 
@@ -28,7 +29,7 @@ class Peliculas extends Component {
   }
 
   apiCall() {
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=${this.state.page+1}`)
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=${this.state.page + 1}`)
       .then(response => response.json())
       .then(data => this.setState(
         {
@@ -53,6 +54,13 @@ class Peliculas extends Component {
     )
   }
 
+
+  botonSeleccionado() {
+    this.setState({
+      seleccionada: !this.state.seleccionada
+    })
+  }
+
   render() {
     return (
       <>
@@ -63,15 +71,15 @@ class Peliculas extends Component {
           <article className="popular">
             <h2>Peliculas más populares</h2>
           </article>
-          <article className="card-container">
+          <article className="peliculaCard">
             {
               this.state.datos.length === 0
                 ? <h3>Cargando...</h3>
                 : this.state.datos.map((pelicula, idx) => (<PeliculasCards key={pelicula.id} pelicula={pelicula} />))
             }
           </article>
-          {this.state.page < this.state.totalPages &&(
-            <button onClick={() => this.apiCall()}>Más Peliculas</button>
+          {this.state.page < this.state.totalPages && (
+            <button className={ `${this.state.seleccionada ? "mostrar" : "esconder"}`} onMouseOver={()=> this.botonSeleccionado()} onClick={() => this.apiCall()}>Más Peliculas</button>
           )
           }
         </section>

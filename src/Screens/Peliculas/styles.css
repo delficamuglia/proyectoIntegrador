@@ -20,20 +20,20 @@ body {
 
 /*Peliculas*/
 
-.card-container {
+.peliculaCard {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px 20px 10px 20px;
 }
-.card-container .character-card {
+.peliculaCard .pelicula {
     border-radius: 4px;
     margin-bottom: 15px;
     padding: 0 20px;
     color: #fff;
 }
-.character-card {
+.pelicula {
     color: #777;
     font-size: 20px;
     padding: 10px;
@@ -44,16 +44,16 @@ body {
     box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
 }
 
-.character-card img{
+.pelicula img{
     width: 100%;
     margin-bottom: 20px; 
 }
 
-.character-card p {
+.pelicula p {
     margin: 3px 0;
 }
 
-.character-card h2 {
+.pelicula h2 {
     margin: 2px 0;
 }
 
@@ -85,3 +85,17 @@ body {
     border-radius: 15px;
 }
 
+button {
+    background-color: red;
+    color: white;            
+    padding: 10px 20px;        
+    font-size: 15px;          
+    border-radius: 5px;    
+    border: none;
+    margin-bottom: 20px;  
+    margin-left: 20px; 
+}
+
+.mostrar {
+    color: black;
+}
