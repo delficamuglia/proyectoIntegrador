@@ -54,13 +54,6 @@ class Peliculas extends Component {
     )
   }
 
-
-  botonSeleccionado() {
-    this.setState({
-      seleccionada: !this.state.seleccionada
-    })
-  }
-
   render() {
     return (
       <>
@@ -79,7 +72,7 @@ class Peliculas extends Component {
             }
           </article>
           {this.state.page < this.state.totalPages && (
-            <button className={ `${this.state.seleccionada ? "mostrar" : "esconder"}`} onMouseOver={()=> this.botonSeleccionado()} onClick={() => this.apiCall()}>Más Peliculas</button>
+            <button onClick={() => this.apiCall()}>Más Peliculas</button>
           )
           }
         </section>
