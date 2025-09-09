@@ -14,7 +14,7 @@ class PeliculasCards extends Component {
         return (
             <div className="character-card" >
                 <img className= "imagen" src= {this.props.pelicula.poster_path} alt={this.props.pelicula.original_title}></img>
-                <h4 className="text">{this.props.pelicula.original_title}</h4> {/*agregar que te mande al detalle*/}
+                <h3 className="text ">{this.props.pelicula.original_title}</h3> {/*agregar que te mande al detalle*/}
                 <h4 className="text">{this.props.pelicula.overview}</h4> 
 
             </div>  

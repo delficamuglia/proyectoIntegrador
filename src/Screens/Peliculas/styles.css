@@ -68,3 +68,20 @@ body {
 .popular {
     margin-left: 20px;
 }
+
+.formularioFiltrar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.inputFiltrar {
+    width: 40%;
+    padding: 10px 15px; 
+    font-size: 15px;
+    border: 2px rgb(92, 92, 92) solid;
+    border-radius: 15px;
+}
+
