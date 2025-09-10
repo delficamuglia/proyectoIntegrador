@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import PeliculasCards from "../Peliculas/PeliculasCards"
 
+//ACÁ TEBNDRIÁN QUE ESTAR TODAS LAS PELÍCULAS O SOLO POPULARES????
+
 class Peliculas extends Component {
   constructor(props) {
     super(props)
