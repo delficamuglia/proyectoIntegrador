@@ -10,7 +10,8 @@ class Peliculas extends Component {
       copiaDatos: [], //establecemos esta variable ya que cuando realizamos el filter en datos, si no guardamos una variable con los datos originales perderíamos los datos que trajimos en primer lugar. De esta manera, mantenemos los datos originales en copiaDatos.
       page: 1,
       totalPages: "",
-      seleccionada: false
+      seleccionada: false,
+      carga: true //establezco que están cargando los datos 
     }
   }
 
@@ -23,7 +24,8 @@ class Peliculas extends Component {
         datos: data.results,
         copiaDatos: data.results,
         page: 1,
-        totalPages: data.total_pages
+        totalPages: data.total_pages,
+        carga: false //una vez que ya cargaron los datos establezco false a la carga ya que ya acabo 
       }))
       .catch(error => console.log(error));
   }
@@ -57,28 +59,33 @@ class Peliculas extends Component {
   render() {
     return (
       <>
-        <section >
-          <form className="formularioFiltrar" onSubmit={(event) => this.prevenirRecarga(event)}>
-            <input className="inputFiltrar" type="text" onChange={(event) => this.filtrarPeliculas(event)} value={this.state.busqueda} />
-          </form>
-          <article className="popular">
-            <h2>Peliculas más populares</h2>
-          </article>
-          <article className="peliculaCard">
+        <h2 className="alert alert-primary">Todas las películas</h2>
+
+        <form className="filter-form px-0 mb-3" action="" method="get" onSubmit={(event) => this.prevenirRecarga(event)}>
+          <input type="text" name="filter" id="" placeholder="Buscar dentro de la lista" onChange={(event) => this.filtrarPeliculas(event)} value={this.state.busqueda} ></input>
+          <button type="submit" className="btn btn-success btn-sm">Buscar</button>
+        </form>
+        <section className="row cards all-movies" id="movies">
             {
-              this.state.datos.length === 0
-                ? <h3>Cargando...</h3>
-                : this.state.datos.map((pelicula, idx) => (<PeliculasCards key={pelicula.id} pelicula={pelicula} />))
+              this.state.carga ? ( //Si carga es true
+                <h3>Cargando...</h3> //mostramos el cargando
+              ) : this.state.datos.length === 0 ? ( //si es false, y no está cargando, significa que los resultados de busqueda son 0. Entonces, si los resultados de busqueda son 0:
+                <h3>No se encontraron resultados de búsqueda</h3> // mostramos que no hay resultados de busqueda 
+              ) : (
+                this.state.datos.map((pelicula) => ( //si que el length de los resultados es 0 es falso, y que la app esta cargando es falso entonces mapeamos los resultados y los mostramos 
+                  <PeliculasCards key={pelicula.id} pelicula={pelicula} />
+                ))
+              )
             }
-          </article>
-          {this.state.page < this.state.totalPages && (
-            <button onClick={() => this.apiCall()}>Más Peliculas</button>
-          )
-          }
         </section>
+        {this.state.page < this.state.totalPages && (
+          <button className="btn btn-info btn-sm" onClick={() => this.apiCall()}>Más Peliculas</button>
+        )
+        }
       </>
-    )
+    );
   }
 }
+
 
 export default Peliculas; 

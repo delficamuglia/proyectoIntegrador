@@ -1,3 +1,4 @@
+
 /* Resets */
 *{
     box-sizing: border-box;
@@ -8,84 +9,30 @@ ul,ol {
 li {
     list-style-type:none;
 }
-a {
-    text-decoration: none;
-    color: #000;
-}
+
 body {
-    font-family: Nunito;
-    margin: 0;
-    background-color: #eee;
+    background-color: black;
+    color: white;
 }
+
 
 /*Peliculas*/
 
-.peliculaCard {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px 20px 10px 20px;
+.alert {
+    margin-left: 15px;
 }
-.peliculaCard .pelicula {
-    border-radius: 4px;
-    margin-bottom: 15px;
-    padding: 0 20px;
-    color: #fff;
-}
-.pelicula {
-    color: #777;
-    font-size: 20px;
-    padding: 10px;
-    margin-bottom: 20px;
-    width: 24%;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
-}
-
-.pelicula img{
-    width: 100%;
-    margin-bottom: 20px; 
-}
-
-.pelicula p {
-    margin: 3px 0;
-}
-
-.pelicula h2 {
-    margin: 2px 0;
-}
-
-.text {
-    color: grey;
-}
-
-.imagen {
-    width: 100%;
-}
-
-.popular {
-    margin-left: 20px;
-}
-
-.formularioFiltrar {
+.filter-form {
+    padding: .5rem 1rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     margin: 20px 0;
 }
-
-.inputFiltrar {
-    width: 40%;
-    padding: 10px 15px; 
-    font-size: 15px;
-    border: 2px rgb(92, 92, 92) solid;
-    border-radius: 15px;
+.filter-form {
+    grid-template-columns: 1fr;
 }
-
-button {
+.btn-sm{
     background-color: red;
     color: white;            
     padding: 10px 20px;        
@@ -95,3 +42,91 @@ button {
     margin-bottom: 20px;  
     margin-left: 20px; 
 }
+
+.btn {
+    margin-top: 10px;
+}
+.filter-form input {
+    vertical-align: middle;
+    line-height: 1;
+    font-size: 1rem;
+    padding-bottom: 4px;
+    width: 40%;
+    padding: 10px 15px; 
+    font-size: 15px;
+    border: 1px rgb(255, 0, 0) solid;
+    border-radius: 15px;
+}
+.filter-form input {
+    line-height: 1.5;
+}
+.cards {
+    padding: 20px 20px 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+.cards .cardBody {
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 0 20px;
+    color: #fff;
+}
+.cardBody {
+    margin-top: 20px;
+}
+
+.cardBody {
+    color: #777;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+}
+
+.cardBody img{
+    width: 100%;
+    margin-bottom: 20px; 
+}
+
+.cardBody p {
+    margin: 3px 0;
+}
+
+.cardBody h2 {
+    margin: 2px 0;
+} 
+
+.single-card-playing {
+    width: 15%;
+}
+.card-text {
+    overflow: hidden;
+    color: black;   
+    height: 100px;
+}
+
+.card-title {
+    color: black;
+}
+
+.single-card-movie{
+    width: 23%;   
+    margin-bottom: 20px;
+    background: #fff; 
+    border-radius: 5px;
+} 
+
+.single-card-movie img {
+    width: 100%;
+}
+
+.all-movies .single-card-movie {
+    width: 23%;
+}
+
