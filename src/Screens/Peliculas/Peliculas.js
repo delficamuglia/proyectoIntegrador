@@ -1,7 +1,5 @@
 import React, { Component } from "react"
-import PeliculasCards from "../Peliculas/PeliculasCards"
-
-//ACÁ TEBNDRIÁN QUE ESTAR TODAS LAS PELÍCULAS O SOLO POPULARES????
+import PeliculasCards from "./PeliculasCards"
 
 class Peliculas extends Component {
   constructor(props) {
@@ -12,15 +10,14 @@ class Peliculas extends Component {
       copiaDatos: [], //establecemos esta variable ya que cuando realizamos el filter en datos, si no guardamos una variable con los datos originales perderíamos los datos que trajimos en primer lugar. De esta manera, mantenemos los datos originales en copiaDatos.
       page: 1,
       totalPages: "",
-      seleccionada: false,
       carga: true //establezco que están cargando los datos 
     }
   }
 
   componentDidMount() {
-    console.log("https://api.themoviedb.org/3/movie/popular?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=1");
+    console.log("https://api.themoviedb.org/3/discover/movie?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=1");
 
-    fetch("https://api.themoviedb.org/3/movie/popular?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=1")
+    fetch("https://api.themoviedb.org/3/discover/movie?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=1")
       .then(response => response.json())
       .then(data => this.setState({
         datos: data.results,
@@ -33,7 +30,7 @@ class Peliculas extends Component {
   }
 
   apiCall() {
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=${this.state.page + 1}`)
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=${this.state.page + 1}`)
       .then(response => response.json())
       .then(data => this.setState(
         {
