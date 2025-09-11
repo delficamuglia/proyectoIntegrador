@@ -21,16 +21,18 @@ body {
 
 /* footer */
 .footer {
-    background-color: #dedede;
+    background-color: #ff0000;
     justify-content: center;   
-    justify-content: space-around;
+    align-items: center;
+    justify-content: space-evenly;
     padding: 10px 0;
-    color: #666;
+    color: #000000;
     bottom: 0;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    height: 80px;
 }
 
 .footer p {
