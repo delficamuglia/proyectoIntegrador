@@ -1,0 +1,28 @@
+.container {
+  height: 100vh;
+  text-align: center;
+  padding-top: 250px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.titulo {
+  font-size: 48px;
+}
+
+.texto {
+  font-size: 22px;
+}
+
+.texto-arriba-boton{
+    font-size: 22px;
+    padding-bottom: 30px;
+}
+
+.boton {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
