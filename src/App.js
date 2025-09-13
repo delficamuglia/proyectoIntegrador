@@ -1,8 +1,8 @@
 import React from 'react';
-import Home from "./Screens/Home/Home"
-import Peliculas from "./Screens/Peliculas/Peliculas"
-import Series from "./Screens/Series/Series"
-import NotFound from "./Screens/NotFound/NotFound"
+import Home from "./screens/Home/Home"
+import Peliculas from "./screens/Peliculas/Peliculas"
+import Series from "./screens/Series/Series"
+import NotFound from "./screens/NotFound/NotFound"
 import Header from "./Components/Header/Header"
 import Footer from "./Components/Footer/Footer"
 import { Route, Switch } from "react-router-dom"
