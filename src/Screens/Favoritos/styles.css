@@ -37,6 +37,38 @@ body {
     width: 23%;
 }
 
-.fav h3 {
-    padding-left: 15px;
+.titulo {
+    font-size: 48px;
 }
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    justify-items: center;
+
+}
+
+.boton {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 5px;
+  width: 20%;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+

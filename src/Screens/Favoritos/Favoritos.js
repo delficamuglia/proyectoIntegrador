@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import PeliculasCards from "../Peliculas/PeliculasCards";
 import SeriesCards from "../Series/SeriesCards";
+import { Link } from 'react-router-dom'
+import "./styles.css"
 
 class Favoritos extends Component {
     constructor(props) {
@@ -66,14 +68,20 @@ class Favoritos extends Component {
                 {this.state.cargando ?
                     <p>Cargando...</p>
                     : !this.state.hayFavoritos ?
-                        <h2> No hay Favoritos </h2>
+                        <div className="container">
+                            <h2 className="fav titulo"> ¡Elegí tus peliculas y series favoritas! </h2>
+                            <div className="links">
+                            <Link to="/peliculas" className="boton"> Peliculas </Link>
+                            <Link to="/series" className="boton"> Series </Link>
+                            </div>
+                        </div>
                         : (
                             <>
-                                <h3 className="fav">Peliculas Favoritas</h3>
+                                <h2 className="fav">Peliculas Favoritas</h2>
                                 <section className="row cards all-movies">
                                     {this.state.peliculasFavoritas.map(pelicula => <PeliculasCards key={pelicula.id} pelicula={pelicula} />)}
                                 </section>
-                                <h3 className="fav">Series Favoritas</h3> {/*CORREGIR ESTO PORQUE SE GUARDAN TODOS BAJO PELÍCULAS*/}
+                                <h2 className="fav">Series Favoritas</h2> {/*CORREGIR ESTO PORQUE SE GUARDAN TODOS BAJO PELÍCULAS*/}
                                 <section className="row cards all-movies">
                                     {this.state.seriesFavoritas.map(serie => <SeriesCards key={serie.id} serie={serie} />)}
                                 </section>

@@ -54,6 +54,10 @@ h1,h2 {
     font-weight: 400;
 }
 
+h2 {
+    margin-left: 30px;
+}
+
 h1,
 main {
     padding: 0 30px;
