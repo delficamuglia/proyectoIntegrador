@@ -8,14 +8,59 @@ class PeliculasCards extends Component {
         this.state = {
             verMas: false,
             textoBoton: "Ver más",
+            esFavorito: false,
         }
     }
 
+    componentDidMount() {
+        let datosEnLocalStorage = localStorage.getItem("Favoritos") //buscamos la lista de favs
+        if (datosEnLocalStorage !== null) { //si hay akgo en localStorage
+            let favoritos = JSON.parse(datosEnLocalStorage) //convierte en string
+            if (favoritos.includes(this.props.pelicula.id)) { //verifica si ese ID está en la lista de favoritos
+                this.setState({ esFavorito: true }) //si la serie esta devuelve true 
+            }
+        }
+    }
     cambiarEstado() {
         this.setState({
             verMas: !this.state.verMas,
             textoBoton: this.state.verMas ? "Ver más" : "Ver menos"
 
+        })
+    }
+
+    agregarAFavoritos() {
+        const id = this.props.pelicula.id
+        let favoritos = []
+
+        let datosEnLocalStorage = localStorage.getItem("Favoritos")
+        if (datosEnLocalStorage !== null) {
+            favoritos = JSON.parse(datosEnLocalStorage)
+        }
+
+        favoritos.push(id)
+        localStorage.setItem("Favoritos", JSON.stringify(favoritos))
+        console.log(localStorage);
+        this.setState({
+            esFavorito: true
+        })
+    }
+
+    quitarDeFavoritos() {
+        {/*Cómo hago para que desaparezca en el momento que toco*/ }
+        const id = this.props.pelicula.id
+        let favoritos = []
+
+        let datosEnLocalStorage = localStorage.getItem("Favoritos")
+        if (datosEnLocalStorage !== null) {
+            favoritos = JSON.parse(datosEnLocalStorage)
+        }
+
+        let nuevoFav = favoritos.filter(unId => unId !== id)
+        localStorage.setItem("Favoritos", JSON.stringify(nuevoFav))
+        console.log(localStorage);
+        this.setState({
+            esFavorito: false,
         })
     }
 
@@ -28,10 +73,15 @@ class PeliculasCards extends Component {
                     </Link>
                     <div className="cardBody">
                         <h5 className="card-title">{this.props.pelicula.original_title}</h5>
-                        {this.state.verMas && <p className="text">{this.props.pelicula.overview}</p>} 
+                        {this.state.verMas && <p className="text">{this.props.pelicula.overview}</p>}
                         <button className="btn btn-info btn-sm" onClick={() => this.cambiarEstado()}>{this.state.textoBoton}</button>
                         {/*<Link to={`/RUTADETALLE/${this.props.pelicula.id}`} className="btn btn-primary">Ver más/>  */}
+                        {this.state.esFavorito ?
+                            <button className="btn btn-info btn-sm" onClick={() => this.quitarDeFavoritos()}>★</button>
+                            : <button className="btn btn-info btn-sm" onClick={() => this.agregarAFavoritos()}>☆</button>
+                        }
                     </div>
+
                 </article>
 
             </>

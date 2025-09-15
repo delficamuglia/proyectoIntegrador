@@ -1,0 +1,42 @@
+
+/* Resets */
+*{
+    box-sizing: border-box;
+}
+ul,ol {
+    padding: 0;
+}
+li {
+    list-style-type:none;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+
+/*Peliculas*/
+
+.cards {
+    padding: 20px 20px 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+.cards .cardBody {
+    border-radius: 4px;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.all-movies .single-card-movie {
+    width: 23%;
+}
+
+.fav h3 {
+    padding-left: 15px;
+}
