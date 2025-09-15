@@ -23,7 +23,9 @@ class PeliculasCards extends Component {
         return (
             <>
                 <article className="single-card-movie">
+                    <Link to={`/detalle/id/${this.props.pelicula.id}`}> 
                     <img src={`https://image.tmdb.org/t/p/w500${this.props.pelicula.poster_path}`} alt={this.props.pelicula.original_title} className="card-img-top" />
+                    </Link>
                     <div className="cardBody">
                         <h5 className="card-title">{this.props.pelicula.original_title}</h5>
                         {this.state.verMas && <p className="text">{this.props.pelicula.overview}</p>} 

@@ -37,7 +37,7 @@ class Detalle extends Component {
         const datos = this.state.datos;
 
         return (
-            <div className="character-card">
+            <div className="card">
                 {this.state.carga ? (
                     <p className="text"> Cargando... </p>
                 ) : (
@@ -47,24 +47,24 @@ class Detalle extends Component {
                             src={`https://image.tmdb.org/t/p/w500${datos.poster_path}`} 
                             alt={datos.title || datos.name} 
                         />
-                        <h4 className="text">{datos.title || datos.name}</h4>
-                        <p className="text">{datos.overview}</p>
+                        <h4 className="texto">{datos.title || datos.name}</h4>
+                        <p className="texto">{datos.overview}</p>
                         {datos.release_date && (
-                            <p className="text">Fecha de estreno: {datos.release_date}</p>
+                            <p className="texto">Fecha de estreno: {datos.release_date}</p>
                         )}
                         {datos.first_air_date && (
-                            <p className="text">Primera emisión: {datos.first_air_date}</p>
+                            <p className="texto">Primera emisión: {datos.first_air_date}</p>
                         )}
                         {datos.genres && (
-                            <p className="text"> 
+                            <p className="texto"> 
                                 Géneros: {datos.genres.map(genero => `${genero.name}`)}
                             </p>
                         )}
                         {datos.runtime && (
-                            <p className="text">Duración: {datos.runtime} minutos</p>
+                            <p className="texto">Duración: {datos.runtime} minutos</p>
                         )}
                         {datos.vote_average && (
-                            <p className="text">Calificación: {datos.vote_average}</p>
+                            <p className="texto">Calificación: {datos.vote_average}</p>
                         )}
                         <button className="boton-fav">Agregar a Favoritos </button>
                     </>
