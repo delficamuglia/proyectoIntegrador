@@ -1,6 +1,8 @@
 import React from 'react'
 import "./styles.css"
 import {Link} from "react-router-dom"
+import Formulario from "../Formulario/Formulario"
+// ver el css del formualrio
 // ver si le ponog ver mas al de peliculas y series 
 // agregar imagen 
 
@@ -15,6 +17,7 @@ function Header() {
          <li> <Link to='/peliculas'> Peliculas </Link> </li>
          <li> <Link to='/series'> Series </Link> </li>
      </ul> 
+     <Formulario />
 
     </nav>
 )
