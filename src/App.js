@@ -2,6 +2,7 @@ import React from 'react';
 import Home from "./Screens/Home/Home"
 import Peliculas from "./Screens/Peliculas/Peliculas"
 import Series from "./Screens/Series/Series"
+import Detalle from "./Screens/Detalle/Detalle"
 import NotFound from "./Screens/NotFound/NotFound"
 import Header from "./Components/Header/Header"
 import ResultadosBusqueda from "./Screens/ResultadosBusqueda/ResultadosBusqueda"
