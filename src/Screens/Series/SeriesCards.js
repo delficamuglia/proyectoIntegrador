@@ -69,7 +69,7 @@ class SeriesCards extends Component {
         return (
             <>
                 <article className="single-card-tv">
-                    <Link to={`/detalle/id/${this.props.serie.id}`}> 
+                    <Link to={`/detalle/serie/${this.props.serie.id}`}> 
                     <img src={`https://image.tmdb.org/t/p/w500${this.props.serie.poster_path}`} alt={this.props.serie.original_name} className="card-img-top" />
                     </Link>
                     <div className="cardBody">

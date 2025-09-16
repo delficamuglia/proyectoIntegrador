@@ -23,7 +23,7 @@
   color: #333;
 }
 
-.boton-fav {
+.boton {
   background-color: #f1c40f;
   border: none;
   padding-top: 10px;
@@ -34,4 +34,8 @@
   font-weight: bold;
   color: #fff;
   border-radius: 5px;
+}
+
+.boton {
+  background-color: #d4ac0d;
 }

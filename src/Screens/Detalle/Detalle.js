@@ -1,38 +1,40 @@
 import React, { Component } from "react";
-import "./styles.css"
+import "./styles.css";
 
 class Detalle extends Component {
     constructor(props) {
         super(props);
         this.state = {
             datos: [],
-            carga: true, 
+            carga: true,
         };
     }
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        const API_KEY = "cc9626b1c01cc6df9ddb2a9c71454130"; //guardamos id y api key en variables
+        const tipo = this.props.match.params.tipo; //identificar pelicula o serie
+        const API_KEY = "cc9626b1c01cc6df9ddb2a9c71454130";
 
-        // Primero intentamos con película
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
+        //armamos url
+        let url = "";
+
+        if (tipo === "pelicula") {
+            url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
+        } else if (tipo === "serie") {
+            url = `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`;
+        }
+
+        fetch(url)
             .then(res => res.json())
             .then(data => {
-                if (data.title) {
-                    this.setState({datos: data, carga: false});
-                } else {
-                    // Si el nombre es name en vez de título, es porq es serie 
-                    fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`)
-                        .then(res => res.json())
-                        .then(data => {
-                            this.setState({datos: data, carga: false});
-                        })
-                        .catch(error => console.log(error));
-                }
+                this.setState({
+                    datos: data,
+                    carga: false
+                });
             })
             .catch(error => console.log(error));
-    } 
-    
+    }
+
     render() {
         const datos = this.state.datos;
 
@@ -44,8 +46,8 @@ class Detalle extends Component {
                     <>
                         <img
                             className="imagen"
-                            src={`https://image.tmdb.org/t/p/w500${datos.poster_path}`} 
-                            alt={datos.title || datos.name} 
+                            src={`https://image.tmdb.org/t/p/w500${datos.poster_path}`}
+                            alt={datos.title || datos.name}
                         />
                         <h4 className="texto">{datos.title || datos.name}</h4>
                         <p className="texto">{datos.overview}</p>
@@ -56,7 +58,7 @@ class Detalle extends Component {
                             <p className="texto">Primera emisión: {datos.first_air_date}</p>
                         )}
                         {datos.genres && (
-                            <p className="texto"> 
+                            <p className="texto">
                                 Géneros: {datos.genres.map(genero => `${genero.name}`)}
                             </p>
                         )}
@@ -66,7 +68,7 @@ class Detalle extends Component {
                         {datos.vote_average && (
                             <p className="texto">Calificación: {datos.vote_average}</p>
                         )}
-                        <button className="boton-fav">Agregar a Favoritos </button>
+                        <button className="boton"> Agregar a Favoritos </button>
                     </>
                 )}
             </div>
