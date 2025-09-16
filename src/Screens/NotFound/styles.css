@@ -1,9 +1,10 @@
 .container {
   height: 100vh;
   text-align: center;
-  padding-top: 250px;
-  padding-left: 40px;
-  padding-right: 40px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 40px;
 }
 
 .titulo {
