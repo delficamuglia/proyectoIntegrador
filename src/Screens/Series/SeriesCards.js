@@ -48,7 +48,7 @@ class SeriesCards extends Component {
     }
 
     quitarDeFavoritos() {
-        {/*Cómo hago para que desaparezca en el momento que toco*/ }
+        //Cómo hago para que desaparezca en el momento que toco
         const id = this.props.serie.id
         let favoritos = []
 

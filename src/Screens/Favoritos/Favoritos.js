@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import PeliculasCards from "../Peliculas/PeliculasCards";
-import SeriesCards from "../Series/SeriesCards";
+import SeriesCards from "../Series/SeriesCards"
 import { Link } from 'react-router-dom'
 import "./styles.css"
 
