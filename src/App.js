@@ -8,6 +8,7 @@ import Header from "./Components/Header/Header"
 import ResultadosBusqueda from "./Screens/ResultadosBusqueda/ResultadosBusqueda"
 import Footer from "./Components/Footer/Footer"
 import Favoritos from './Screens/Favoritos/Favoritos';
+// exact!!!!!!!!
 
 import { Route, Switch } from "react-router-dom"
 
@@ -20,7 +21,7 @@ function App() {
         <Route path="/peliculas" component={Peliculas}  />
         <Route path="/series" component={Series}  />
         <Route path="/detalle/:tipo/:id" component={Detalle} />
-        <Route path="/busqueda/:query" component={ResultadosBusqueda}/>
+        <Route path="/busqueda/:tipo/:query" component={ResultadosBusqueda}/>
         <Route path="/favoritos" component={Favoritos}/>  
         <Route component={NotFound} />
       </Switch>
