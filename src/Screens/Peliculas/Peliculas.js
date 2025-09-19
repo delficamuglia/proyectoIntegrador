@@ -10,7 +10,7 @@ class Peliculas extends Component {
       copiaDatos: [], //establecemos esta variable ya que cuando realizamos el filter en datos, si no guardamos una variable con los datos originales perderíamos los datos que trajimos en primer lugar. De esta manera, mantenemos los datos originales en copiaDatos.
       page: 1,
       totalPages: "",
-      carga: true //establezco que están cargando los datos 
+      carga: true 
     }
   }
 
@@ -24,7 +24,7 @@ class Peliculas extends Component {
         copiaDatos: data.results,
         page: 1,
         totalPages: data.total_pages,
-        carga: false //una vez que ya cargaron los datos establezco false a la carga ya que ya acabo 
+        carga: false 
       }))
       .catch(error => console.log(error));
   }
@@ -66,10 +66,10 @@ class Peliculas extends Component {
         </form>
         <section className="row cards all-movies" id="movies">
             {
-              this.state.carga ? ( //Si carga es true
-                <h3>Cargando...</h3> //mostramos el cargando
-              ) : this.state.datos.length === 0 ? ( //si es false, y no está cargando, significa que los resultados de busqueda son 0. Entonces, si los resultados de busqueda son 0:
-                <h3>No se encontraron resultados de búsqueda</h3> // mostramos que no hay resultados de busqueda 
+              this.state.carga ? ( 
+                <h3> Cargando... </h3> //mostramos el cargando si es true
+              ) : this.state.datos.length === 0 ? ( //si no esta cargando, significa que los resultados son nulos. si es asi:
+                <h3>No se encontraron resultados de búsqueda</h3> // no hay resultados de busqueda 
               ) : (
                 this.state.datos.map((pelicula) => ( //si que el length de los resultados es 0 es falso, y que la app esta cargando es falso entonces mapeamos los resultados y los mostramos 
                   <PeliculasCards key={pelicula.id} pelicula={pelicula} />

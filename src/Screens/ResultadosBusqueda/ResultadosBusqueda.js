@@ -8,6 +8,7 @@ class ResultadosBusqueda extends Component {
     super(props)
     this.state = {
         elementos: [],
+        cargando: true
     }
   }
 
@@ -29,7 +30,7 @@ class ResultadosBusqueda extends Component {
       .then(res => res.json())
       .then((data)=>{
         console.log(data)
-        this.setState({ elementos: data.results})
+        this.setState({ elementos: data.results, cargando: false })
     
       })
       .catch((error)=>{
@@ -48,7 +49,9 @@ class ResultadosBusqueda extends Component {
      
         </h2>
         <section className="row cards all-movies" id="movies">
-            {
+            {this.state.cargando ? ( 
+                <h3>Cargando...</h3> 
+              ) : 
                this.state.elementos.length === 0 ? ( 
                 <h3>No se encontraron resultados de búsqueda</h3> 
               ) : (
