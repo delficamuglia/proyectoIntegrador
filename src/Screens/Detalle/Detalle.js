@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Detalle.css"
+import "./styles.css";
 
 class Detalle extends Component {
     constructor(props) {
@@ -39,36 +39,36 @@ class Detalle extends Component {
         const datos = this.state.datos;
 
         return (
-            <div className="card">
+            <div className="detalle-card">
                 {this.state.carga ? (
-                    <p className="text"> Cargando... </p>
+                    <p className="detalle-texto"> Cargando... </p>
                 ) : (
                     <>
                         <img
-                            className="imagen"
+                            className="detalle-imagen"
                             src={`https://image.tmdb.org/t/p/w500${datos.poster_path}`}
                             alt={datos.title || datos.name}
                         />
-                        <h4 className="texto">{datos.title || datos.name}</h4>
-                        <p className="texto">{datos.overview}</p>
+                        <h4 className="detalle-texto">{datos.title || datos.name}</h4>
+                        <p className="detalle-texto">{datos.overview}</p>
                         {datos.release_date && (
-                            <p className="texto">Fecha de estreno: {datos.release_date}</p>
+                            <p className="detalle-texto">Fecha de estreno: {datos.release_date}</p>
                         )}
                         {datos.first_air_date && (
-                            <p className="texto">Primera emisión: {datos.first_air_date}</p>
+                            <p className="detalle-texto">Primera emisión: {datos.first_air_date}</p>
                         )}
                         {datos.genres && (
-                            <p className="texto">
-                                Géneros: {datos.genres.map(genero => `${genero.name}`)}
+                            <p className="detalle-texto">
+                                Géneros: {datos.genres.map(genero => `${genero.name}`).join(", ")}
                             </p>
                         )}
                         {datos.runtime && (
-                            <p className="texto">Duración: {datos.runtime} minutos</p>
+                            <p className="detalle-texto">Duración: {datos.runtime} minutos</p>
                         )}
                         {datos.vote_average && (
-                            <p className="texto">Calificación: {datos.vote_average}</p>
+                            <p className="detalle-texto">Calificación: {datos.vote_average}</p>
                         )}
-                        <button className="boton"> Agregar a Favoritos </button>
+                        <button className="detalle-boton"> Agregar a Favoritos </button>
                     </>
                 )}
             </div>

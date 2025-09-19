@@ -1,4 +1,4 @@
-.card {
+.detalle-card {
   background-color: #ffffff;
   border-radius: 10px;
   padding: 20px;
@@ -10,26 +10,23 @@
   font-family: Arial, sans-serif;
 }
 
-.imagen {
+.detalle-imagen {
   width: 100%;
   height: auto;
   border-radius: 10px;
   margin-bottom: 20px;
 }
 
-.texto {
+.detalle-texto {
   font-size: 18px;
   margin-bottom: 10px;
   color: #333;
 }
 
-.boton {
+.detalle-boton {
   background-color: #f1c40f;
   border: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
   color: #fff;

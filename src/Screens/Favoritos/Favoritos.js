@@ -10,7 +10,7 @@ class Favoritos extends Component {
         this.state = {
             peliculasFavoritas: [],
             seriesFavoritas: [],
-            carga: true,
+            cargando: true, 
             hayFavoritos: true
         }
     }
@@ -27,7 +27,7 @@ class Favoritos extends Component {
         if (datosEnLocalStorage !== null) {
             listaIdFavoritos = JSON.parse(datosEnLocalStorage)
             if (listaIdFavoritos.length === 0) {
-                this.setState({ cargando: false, hayFavoritos: false })
+                this.setState({cargando: false, hayFavoritos: false })
                 return
             }
             let listaPeliculasAux = []
@@ -40,7 +40,8 @@ class Favoritos extends Component {
                         if (data.title) {
                             listaPeliculasAux.push(data)
                             this.setState({
-                                peliculasFavoritas: [...listaPeliculasAux]
+                                peliculasFavoritas: [...listaPeliculasAux],
+                                cargando: false
                             })
                         } else {
                             // Si el nombre es name en vez de title, es porque es serie
@@ -49,7 +50,8 @@ class Favoritos extends Component {
                                 .then(data => {
                                     listaSeriesAux.push(data)
                                     this.setState({
-                                        seriesFavoritas: [...listaSeriesAux]
+                                        seriesFavoritas: [...listaSeriesAux],
+                                        cargando: false
                                     })
                                 })
                                 .catch(error => console.log(error))
@@ -66,7 +68,7 @@ class Favoritos extends Component {
             <>
                 <h1>Página de favoritos</h1>
                 {this.state.cargando ?
-                    <p>Cargando...</p>
+                    <p> Cargando... </p>
                     : !this.state.hayFavoritos ?
                         <div className="container">
                             <h2 className="fav titulo"> ¡Elegí tus peliculas y series favoritas! </h2>
