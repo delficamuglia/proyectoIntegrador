@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import PeliculasCards from "../Peliculas/PeliculasCards";
 import SeriesCards from "../Series/SeriesCards";
 import { Link } from "react-router-dom";
-
+// ver boton detalle
 
 
 class Home extends Component {
@@ -35,6 +35,8 @@ class Home extends Component {
           }))
           .catch(error => console.log(error));
       }
+
+
 
     render () {
         return (

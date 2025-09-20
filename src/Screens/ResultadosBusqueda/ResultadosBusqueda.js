@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import PeliculasCards from "../Peliculas/PeliculasCards"
 import SeriesCards from "../Series/SeriesCards"
-// cuando buscas otra cosa hay que recargar todo VER ESO Y PREGUNTAR
+
 
 class ResultadosBusqueda extends Component {
   constructor(props) {
@@ -39,6 +39,34 @@ class ResultadosBusqueda extends Component {
       });
   }
 
+  componentDidUpdate () {
+    const query = this.props.match.params.query;
+    const tipo = this.props.match.params.tipo; 
+    const API_KEY = "cc9626b1c01cc6df9ddb2a9c71454130";
+
+    let url = "";
+
+    if (tipo === "movie") {
+        url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`;
+    } else if (tipo === "tv") {
+        url = `https://api.themoviedb.org/3/search/tv?query=${query}&api_key=${API_KEY}`;
+    }
+    
+  
+    fetch(url)
+      .then(response => response.json())
+      .then((data)=>{
+        console.log(data)
+        this.setState({ elementos: data.results, cargando: false })
+    
+      })
+      .catch((error)=>{
+        console.log(error)
+     
+      });
+
+
+  }
   render(){
   
     return (
