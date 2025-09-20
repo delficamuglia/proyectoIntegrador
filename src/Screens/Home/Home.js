@@ -57,7 +57,7 @@ class Home extends Component {
             }
         </section>
 
-        <h2 className="alert alert-primary">Descubrir  series</h2>
+        <h2 className="alert alert-primary">Descubrir series</h2>
         <Link to='/series'> Ver todas </Link>
                  <section className="row cards all-movies" id="movies">
             {
