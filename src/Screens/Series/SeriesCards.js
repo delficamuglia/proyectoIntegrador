@@ -13,7 +13,7 @@ class SeriesCards extends Component {
     }
 
     componentDidMount() {
-        let datosEnLocalStorage = localStorage.getItem("Favoritos") //buscamos la lista de favs
+        let datosEnLocalStorage = localStorage.getItem("SeriesFavoritas") //buscamos la lista de favs
         if (datosEnLocalStorage !== null) { //si hay akgo en localStorage
             let favoritos = JSON.parse(datosEnLocalStorage) //convierte en string
             if (favoritos.includes(this.props.serie.id)) { //verifica si ese ID está en la lista de favoritos
@@ -34,13 +34,13 @@ class SeriesCards extends Component {
         const id = this.props.serie.id
         let favoritos = []
 
-        let datosEnLocalStorage = localStorage.getItem("Favoritos")
+        let datosEnLocalStorage = localStorage.getItem("SeriesFavoritas")
         if (datosEnLocalStorage !== null) {
             favoritos = JSON.parse(datosEnLocalStorage)
         }
 
-        favoritos.push(id)
-        localStorage.setItem("Favoritos", JSON.stringify(favoritos))
+        favoritos.push(JSON.stringify(id))
+        localStorage.setItem("SeriesFavoritas", JSON.stringify(favoritos))
         console.log(localStorage);
         this.setState({
             esFavorito: true
@@ -52,13 +52,13 @@ class SeriesCards extends Component {
         const id = this.props.serie.id
         let favoritos = []
 
-        let datosEnLocalStorage = localStorage.getItem("Favoritos")
+        let datosEnLocalStorage = localStorage.getItem("SeriesFavoritas")
         if (datosEnLocalStorage !== null) {
             favoritos = JSON.parse(datosEnLocalStorage)
         }
 
         let nuevoFav = favoritos.filter(unId => unId !== id)
-        localStorage.setItem("Favoritos", JSON.stringify(nuevoFav))
+        localStorage.setItem("SeriesFavoritas", JSON.stringify(nuevoFav))
         console.log(localStorage);
         this.setState({
             esFavorito: false

@@ -14,8 +14,6 @@ class Home extends Component {
             //
             seriesDescubrir: [],
             //
-    
-          
         }
       }    
 
@@ -25,7 +23,7 @@ class Home extends Component {
           .then(response => response.json())
           .then(data => this.setState({
             peliculasDescubrir: data.results,
-            // 
+            //
           }))
           .catch(error => console.log(error));
 
@@ -38,8 +36,6 @@ class Home extends Component {
           .catch(error => console.log(error));
       }
 
-      
-
     render () {
         return (
          
@@ -47,7 +43,7 @@ class Home extends Component {
                  <h2 className="alert alert-primary">Descubrir películas</h2>
                  <Link to='/peliculas'> Ver todas </Link>
                  <section className="row cards all-movies" id="movies">
-            {
+            { 
                (
                 this.state.peliculasDescubrir.map((pelicula, idx) => ( //si que el length de los resultados es 0 es falso, y que la app esta cargando es falso entonces mapeamos los resultados y los mostramos 
                  idx<4 ? <PeliculasCards key={pelicula.id} pelicula={pelicula} /> : null

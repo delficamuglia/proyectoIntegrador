@@ -7,6 +7,7 @@ class Detalle extends Component {
         this.state = {
             datos: [],
             carga: true,
+            textoBoton: '',
         };
     }
 
@@ -14,6 +15,24 @@ class Detalle extends Component {
         const id = this.props.match.params.id;
         const tipo = this.props.match.params.tipo; //identificar pelicula o serie
         const API_KEY = "cc9626b1c01cc6df9ddb2a9c71454130";
+
+        let elementosFavoritos = []
+        if (tipo === 'pelicula') {
+            elementosFavoritos = localStorage.getItem('PeliculasFavoritas')
+        } else {
+            elementosFavoritos = localStorage.getItem('SeriesFavoritas')
+        }
+        console.log(elementosFavoritos)
+        if (elementosFavoritos != null) {
+            elementosFavoritos = JSON.parse(elementosFavoritos)
+        } else {
+            elementosFavoritos = []
+        }
+        if (elementosFavoritos.includes(id)) {
+            this.setState({ textoBoton: 'Eliminar de favoritos' })
+        } else {
+            this.setState({ textoBoton: 'Agregar a favoritos' })
+        }
 
         //armamos url
         let url = "";
@@ -33,6 +52,37 @@ class Detalle extends Component {
                 });
             })
             .catch(error => console.log(error));
+    }
+
+    manejarFavoritos() {
+        let elementosFavoritos = []
+        if (this.props.match.params.tipo === 'pelicula') {
+            elementosFavoritos = localStorage.getItem('PeliculasFavoritas')
+        } else {
+            elementosFavoritos = localStorage.getItem('SeriesFavoritas')
+        }
+        console.log(elementosFavoritos)
+        if (elementosFavoritos != null) {
+            elementosFavoritos = JSON.parse(elementosFavoritos)
+        } else {
+            elementosFavoritos = []
+        }
+        console.log(elementosFavoritos)
+        let listaActualizada = elementosFavoritos
+        if (elementosFavoritos.includes(this.props.match.params.id)) { //si el id esta en la lista, lo quiero sacar
+            listaActualizada = elementosFavoritos.filter(idFavorito => { return idFavorito !== this.props.match.params.id })
+            this.setState({ textoBoton: 'Agregar a favoritos' })
+        } else {
+            console.log(this.props.match.params.id)
+            listaActualizada.push(this.props.match.params.id)
+            this.setState({ textoBoton: 'Eliminar de favoritos' })
+        }
+        console.log(listaActualizada)
+        if (this.props.match.params.tipo === 'pelicula') {
+            localStorage.setItem('PeliculasFavoritas', JSON.stringify(listaActualizada))
+        } else {
+            localStorage.setItem('SeriesFavoritas', JSON.stringify(listaActualizada))
+        }
     }
 
     render() {
@@ -68,7 +118,7 @@ class Detalle extends Component {
                         {datos.vote_average && (
                             <p className="detalle-texto">Calificación: {datos.vote_average}</p>
                         )}
-                        <button className="detalle-boton"> Agregar a Favoritos </button>
+                        <button onClick={() => this.manejarFavoritos()} className="detalle-boton"> {this.state.textoBoton} </button>
                     </>
                 )}
             </div>
