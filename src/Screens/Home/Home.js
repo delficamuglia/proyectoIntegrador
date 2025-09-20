@@ -11,9 +11,9 @@ class Home extends Component {
         super(props)
         this.state = {
             peliculasDescubrir: [],
-            //
+            peliculasCargando: true,
             seriesDescubrir: [],
-            //
+            seriesCargando: true,
         }
       }    
 
@@ -23,7 +23,7 @@ class Home extends Component {
           .then(response => response.json())
           .then(data => this.setState({
             peliculasDescubrir: data.results,
-            //
+            peliculasCargando: false,
           }))
           .catch(error => console.log(error));
 
@@ -31,7 +31,7 @@ class Home extends Component {
           .then(response => response.json())
           .then(data => this.setState({
             seriesDescubrir: data.results,
-            //
+            seriesCargando: false,
           }))
           .catch(error => console.log(error));
       }
@@ -44,6 +44,9 @@ class Home extends Component {
                  <Link to='/peliculas'> Ver todas </Link>
                  <section className="row cards all-movies" id="movies">
             { 
+            this.state.peliculasCargando ? ( 
+              <h3> Cargando... </h3> //mostramos mensaje
+            ) :
                (
                 this.state.peliculasDescubrir.map((pelicula, idx) => ( //si que el length de los resultados es 0 es falso, y que la app esta cargando es falso entonces mapeamos los resultados y los mostramos 
                  idx<4 ? <PeliculasCards key={pelicula.id} pelicula={pelicula} /> : null
