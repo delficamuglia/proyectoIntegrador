@@ -61,7 +61,9 @@ class Home extends Component {
         <Link to='/series'> Ver todas </Link>
                  <section className="row cards all-movies" id="movies">
             {
-               (
+              this.state.seriesCargando ? (
+                <h3> Cargando... </h3>
+              ) : (
                 this.state.seriesDescubrir.map((serie, idx) => ( //si que el length de los resultados es 0 es falso, y que la app esta cargando es falso entonces mapeamos los resultados y los mostramos 
                  idx<4 ? <SeriesCards key={serie.id} serie={serie} /> : null 
                 ))
