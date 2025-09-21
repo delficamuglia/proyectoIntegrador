@@ -13,10 +13,10 @@ class PeliculasCards extends Component {
     }
 
     componentDidMount() {
-        let datosEnLocalStorage = localStorage.getItem("PeliculasFavoritas") //buscamos la lista de favs
-        if (datosEnLocalStorage !== null) { //si hay akgo en localStorage
-            let favoritos = JSON.parse(datosEnLocalStorage) //convierte en string
-            if (favoritos.includes(this.props.pelicula.id)) { //verifica si ese ID está en la lista de favoritos
+        let peliculasIds = localStorage.getItem("PeliculasFavoritas") //buscamos la lista de favs
+        if (peliculasIds !== null) { //si hay akgo en localStorage
+            let favoritos = JSON.parse(peliculasIds) //convierte en string
+            if (favoritos.includes(String(this.props.pelicula.id))) { //verifica si ese ID está en la lista de favoritos
                 this.setState({ esFavorito: true }) //si la serie esta devuelve true 
             }
         }
@@ -33,9 +33,9 @@ class PeliculasCards extends Component {
         const id = this.props.pelicula.id
         let favoritos = []
 
-        let datosEnLocalStorage = localStorage.getItem("PeliculasFavoritas")
-        if (datosEnLocalStorage !== null) {
-            favoritos = JSON.parse(datosEnLocalStorage)
+        let peliculasIds = localStorage.getItem("PeliculasFavoritas")
+        if (peliculasIds !== null) {
+            favoritos = JSON.parse(peliculasIds)
         }
 
         favoritos.push(JSON.stringify(id))
@@ -51,12 +51,12 @@ class PeliculasCards extends Component {
         const id = this.props.pelicula.id
         let favoritos = []
 
-        let datosEnLocalStorage = localStorage.getItem("PeliculasFavoritas")
-        if (datosEnLocalStorage !== null) {
-            favoritos = JSON.parse(datosEnLocalStorage)
+        let peliculasIds = localStorage.getItem("PeliculasFavoritas")
+        if (peliculasIds !== null) {
+            favoritos = JSON.parse(peliculasIds)
         }
 
-        let nuevoFav = favoritos.filter(unId => unId !== id)
+        let nuevoFav = favoritos.filter(unId => unId !== String(this.props.pelicula.id))
         localStorage.setItem("PeliculasFavoritas", JSON.stringify(nuevoFav))
         console.log(localStorage);
         this.setState({

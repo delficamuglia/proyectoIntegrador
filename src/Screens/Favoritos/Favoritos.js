@@ -4,95 +4,94 @@ import SeriesCards from "../Series/SeriesCards"
 import { Link } from 'react-router-dom'
 import "./styles.css"
 
+let apiKey = "cc9626b1c01cc6df9ddb2a9c71454130"
 class Favoritos extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            peliculasFavoritas: [],
-            seriesFavoritas: [],
-            cargando: true, 
-            hayFavoritos: true
+            cargandoPeliculas: 0,
+            cargandoSeries: 0,
+            peliculasFav: [],
+            seriesFav: [],
+            peliculasIds: [],
+            seriesIds: []
         }
     }
 
     componentDidMount() {
-        let listaIdFavoritos = []
-        let datosEnLocalStorage = localStorage.getItem("Favoritos")
-        if (!datosEnLocalStorage) {
-            this.setState({
-                cargando: false,
-                hayFavoritos: false
-            })
-        }
-        if (datosEnLocalStorage !== null) {
-            listaIdFavoritos = JSON.parse(datosEnLocalStorage)
-            if (listaIdFavoritos.length === 0) {
-                this.setState({cargando: false, hayFavoritos: false })
-                return
-            }
-            let listaPeliculasAux = []
-            let listaSeriesAux = []
+        let peliculasIds = JSON.parse(localStorage.getItem('PeliculasFavoritas')|| "[]") 
+        peliculasIds = peliculasIds.filter(id => id); // elimina null, undefined o ""   
 
-            listaIdFavoritos.map(unId => {
-                fetch(`https://api.themoviedb.org/3/movie/${unId}?api_key=cc9626b1c01cc6df9ddb2a9c71454130`)
+            peliculasIds.map(id => {
+                fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
                     .then(res => res.json())
                     .then(data => {
-                        if (data.title) {
-                            listaPeliculasAux.push(data)
-                            this.setState({
-                                peliculasFavoritas: [...listaPeliculasAux],
-                                cargando: false
-                            })
-                        } else {
-                            // Si el nombre es name en vez de title, es porque es serie
-                            fetch(`https://api.themoviedb.org/3/tv/${unId}?api_key=cc9626b1c01cc6df9ddb2a9c71454130`)
-                                .then(res => res.json())
-                                .then(data => {
-                                    listaSeriesAux.push(data)
-                                    this.setState({
-                                        seriesFavoritas: [...listaSeriesAux],
-                                        cargando: false
-                                    })
-                                })
-                                .catch(error => console.log(error))
+                        let peliculasFav = this.state.peliculasFav
+                        peliculasFav.push(data);
+                        this.setState({ peliculasFav: peliculasFav, cargandoPeliculas: this.state.cargandoPeliculas + 1});
                         }
-                    })
-                    .catch(error => console.log(error))
-            })
-        }
+                    )
+                    .catch(err => console.log(err));
+            });
+        let seriesIds = JSON.parse(localStorage.getItem('SeriesFavoritas')|| "[]")    
+        seriesIds = seriesIds.filter(id => id); // elimina null, undefined o ""   
+
+            seriesIds.map(id => {
+                fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        let seriesFav = this.state.seriesFav
+                        seriesFav.push(data);
+                        this.setState({ seriesFav: seriesFav, cargandoSeries: this.state.cargandoSeries + 1});
+                        }
+                    )
+                    .catch(err => console.log(err));
+            }); 
+        this.setState ({
+            peliculasIds: peliculasIds,
+            seriesIds: seriesIds
+        })
     }
 
     render() {
-
         return (
             <>
-                <h1>Página de favoritos</h1>
-                {this.state.cargando ?
-                    <p> Cargando... </p>
-                    : !this.state.hayFavoritos ?
-                        <div className="container">
-                            <h2 className="fav titulo"> ¡Elegí tus peliculas y series favoritas! </h2>
-                            <div className="links">
-                            <Link to="/peliculas" className="boton"> Peliculas </Link>
-                            <Link to="/series" className="boton"> Series </Link>
-                            </div>
+                <h1>Favoritos</h1>
+                <h2 className="fav">Peliculas Favoritas</h2>
+                {this.state.peliculasIds.length === 0
+                    ? <div className="container">
+                        <h2 className="fav titulo">¡Elegí tus peliculas favoritas!</h2>
+                        <div className="links">
+                            <Link to="/peliculas" className="boton">Peliculas</Link>
                         </div>
-                        : (
-                            <>
-                                <h2 className="fav">Peliculas Favoritas</h2>
-                                <section className="row cards all-movies">
-                                    {this.state.peliculasFavoritas.map(pelicula => <PeliculasCards key={pelicula.id} pelicula={pelicula} />)}
-                                </section>
-                                <h2 className="fav">Series Favoritas</h2> {/*CORREGIR ESTO PORQUE SE GUARDAN TODOS BAJO PELÍCULAS*/}
-                                <section className="row cards all-movies">
-                                    {this.state.seriesFavoritas.map(serie => <SeriesCards key={serie.id} serie={serie} />)}
-                                </section>
-                            </>
-                        )
-                }
+                    </div>
+                    : this.state.cargandoPeliculas !== this.state.peliculasIds.length
+                        ? <p>Cargando...</p>
+                        : <section className="row cards all-movies">
+                            {this.state.peliculasFav.map(pelicula => (
+                                <PeliculasCards key={pelicula.id} pelicula={pelicula} />
+                            ))}
+                        </section>}
+                <h2 className="fav">Series Favoritas</h2>
+                {this.state.seriesIds.length === 0
+                    ? <div className="container">
+                        <h2 className="fav titulo">¡Elegí tus series favoritas!</h2>
+                        <div className="links">
+                            <Link to="/series" className="boton">Series</Link>
+                        </div>
+                    </div>
+                    : this.state.cargandoSeries !== this.state.seriesIds.length
+                        ? <p>Cargando...</p>
+                        : <section className="row cards all-movies">
+                            {this.state.seriesFav.map(serie => (
+                                <SeriesCards key={serie.id} serie={serie} />
+                            ))}
+                        </section>}
             </>
+    
         )
     }
+
 }
 
 export default Favoritos;

@@ -13,10 +13,10 @@ class SeriesCards extends Component {
     }
 
     componentDidMount() {
-        let datosEnLocalStorage = localStorage.getItem("SeriesFavoritas") //buscamos la lista de favs
-        if (datosEnLocalStorage !== null) { //si hay akgo en localStorage
-            let favoritos = JSON.parse(datosEnLocalStorage) //convierte en string
-            if (favoritos.includes(this.props.serie.id)) { //verifica si ese ID está en la lista de favoritos
+        let seriesIds = localStorage.getItem("SeriesFavoritas") //buscamos la lista de favs
+        if (seriesIds !== null) { //si hay akgo en localStorage
+            let favoritos = JSON.parse(seriesIds) //convierte en string
+            if (favoritos.includes(String(this.props.serie.id))) { //verifica si ese ID está en la lista de favoritos
                 this.setState({ esFavorito: true }) //si la serie esta devuelve true 
             }
         }
@@ -34,9 +34,9 @@ class SeriesCards extends Component {
         const id = this.props.serie.id
         let favoritos = []
 
-        let datosEnLocalStorage = localStorage.getItem("SeriesFavoritas")
-        if (datosEnLocalStorage !== null) {
-            favoritos = JSON.parse(datosEnLocalStorage)
+        let seriesIds = localStorage.getItem("SeriesFavoritas")
+        if (seriesIds !== null) {
+            favoritos = JSON.parse(seriesIds)
         }
 
         favoritos.push(JSON.stringify(id))
@@ -52,12 +52,12 @@ class SeriesCards extends Component {
         const id = this.props.serie.id
         let favoritos = []
 
-        let datosEnLocalStorage = localStorage.getItem("SeriesFavoritas")
-        if (datosEnLocalStorage !== null) {
-            favoritos = JSON.parse(datosEnLocalStorage)
+        let seriesIds = localStorage.getItem("SeriesFavoritas")
+        if (seriesIds !== null) {
+            favoritos = JSON.parse(seriesIds)
         }
 
-        let nuevoFav = favoritos.filter(unId => unId !== id)
+        let nuevoFav = favoritos.filter(unId => unId !== String(this.props.serie.id))
         localStorage.setItem("SeriesFavoritas", JSON.stringify(nuevoFav))
         console.log(localStorage);
         this.setState({
