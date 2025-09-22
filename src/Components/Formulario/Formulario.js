@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import { withRouter } from "react-router-dom"
 import './styles.css'
-// hacer css del formulario 
 
 class Formulario extends Component {
     constructor(props){
@@ -19,8 +18,8 @@ class Formulario extends Component {
             alert (mensaje)
 
         } else  { 
-        this.props.history.push("/busqueda/" + this.state.tipo + '/'+ this.state.busqueda)
-        console.log(event); 
+            this.props.history.push("/busqueda/" + this.state.tipo + '/'+ this.state.busqueda)
+            console.log(event); 
     }
         
     }
@@ -46,7 +45,6 @@ class Formulario extends Component {
     render() {        
         return(
             <>
-            
             <form className="form" onSubmit={(event)=>this.prevenirRecarga(event)}>
                 <input className="text" type="text" onChange={(event)=> this.controlarCambios(event)} value={this.state.busqueda}/>
 
