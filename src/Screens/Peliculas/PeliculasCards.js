@@ -46,9 +46,7 @@ class PeliculasCards extends Component {
         })
     }
 
-    quitarDeFavoritos() {
-        //Cómo hago para que desaparezca en el momento que toco
-        const id = this.props.pelicula.id
+    quitarDeFavoritos(props) {
         let favoritos = []
 
         let peliculasIds = localStorage.getItem("PeliculasFavoritas")

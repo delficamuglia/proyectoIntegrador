@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import { withRouter } from "react-router-dom"
-import './Formulario.css'
+import './styles.css'
 // hacer css del formulario 
 
 class Formulario extends Component {

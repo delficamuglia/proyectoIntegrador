@@ -48,8 +48,6 @@ class SeriesCards extends Component {
     }
 
     quitarDeFavoritos() {
-        //Cómo hago para que desaparezca en el momento que toco
-        const id = this.props.serie.id
         let favoritos = []
 
         let seriesIds = localStorage.getItem("SeriesFavoritas")
@@ -69,8 +67,8 @@ class SeriesCards extends Component {
         return (
             <>
                 <article className="single-card-tv">
-                    <Link to={`/detalle/serie/${this.props.serie.id}`}> 
-                    <img src={`https://image.tmdb.org/t/p/w500${this.props.serie.poster_path}`} alt={this.props.serie.original_name} className="card-img-top" />
+                    <Link to={`/detalle/serie/${this.props.serie.id}`}>
+                        <img src={`https://image.tmdb.org/t/p/w500${this.props.serie.poster_path}`} alt={this.props.serie.original_name} className="card-img-top" />
                     </Link>
                     <div className="cardBody">
                         <h5 className="card-title">{this.props.serie.original_name}</h5>

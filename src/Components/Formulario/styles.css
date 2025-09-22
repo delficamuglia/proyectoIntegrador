@@ -1,7 +1,8 @@
 .form {
     display: flex;
     align-items: center;
-  }
+}
+
   
 .radiobutton { 
     margin-right: 20px; 
@@ -12,7 +13,16 @@
     padding: 0 10px;
     border: 1px solid #ccc;
     margin-right: 8px;
-  }
+    vertical-align: middle;
+    line-height: 1;
+    padding-bottom: 4px;
+    width: 40%;
+    padding: 10px 15px; 
+    font-size: 15px;
+    border: 1px rgb(255, 0, 0) solid;
+    border-radius: 15px;
+}
+
   
 .buscar {
     height: 32px;
