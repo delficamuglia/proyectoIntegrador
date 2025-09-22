@@ -75,7 +75,7 @@ class PeliculasCards extends Component {
                     </Link>
                     <div className="cardBody">
                         <h5 className="card-title">{this.props.pelicula.original_title}</h5>
-                        {this.state.verMas && <p className="text">{this.props.pelicula.overview}</p>}
+                        {this.state.verMas && <p className="texto-cards">{this.props.pelicula.overview}</p>}
                         <button className="btn btn-info btn-sm" onClick={() => this.cambiarEstado()}>{this.state.textoBoton}</button>
                         {/*<Link to={`/RUTADETALLE/${this.props.pelicula.id}`} className="btn btn-primary">Ver más/>  */}
                         {this.state.esFavorito ?

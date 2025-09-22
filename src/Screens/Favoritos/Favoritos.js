@@ -9,58 +9,58 @@ class Favoritos extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            cargandoPeliculas: 0,
-            cargandoSeries: 0,
             peliculasFav: [],
             seriesFav: [],
             peliculasIds: [],
-            seriesIds: []
+            seriesIds: [],
+            cargandoSeries: 0,
+            cargandoPeliculas: 0,
         }
     }
 
     componentDidMount() {
-        let peliculasIds = JSON.parse(localStorage.getItem('PeliculasFavoritas')|| "[]") 
+        let peliculasIds = JSON.parse(localStorage.getItem('PeliculasFavoritas') || "[]")
         peliculasIds = peliculasIds.filter(id => id); // elimina null, undefined o ""   
 
-            peliculasIds.map(id => {
-                return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        let peliculasFav = this.state.peliculasFav
-                        peliculasFav.push(data);
-                        this.setState({ peliculasFav: peliculasFav, cargandoPeliculas: this.state.cargandoPeliculas + 1});
-                        }
-                    )
-                    .catch(err => console.log(err));
-            });
-        let seriesIds = JSON.parse(localStorage.getItem('SeriesFavoritas')|| "[]")    
+        peliculasIds.map(id => {
+            return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
+                .then(res => res.json())
+                .then(data => {
+                    let peliculasFav = this.state.peliculasFav
+                    peliculasFav.push(data);
+                    this.setState({ cargandoPeliculas: this.state.cargandoPeliculas + 1, peliculasFav: peliculasFav });
+                }
+                )
+                .catch(err => console.log(err));
+        });
+        let seriesIds = JSON.parse(localStorage.getItem('SeriesFavoritas') || "[]")
         seriesIds = seriesIds.filter(id => id); // elimina null, undefined o ""   
 
-            seriesIds.map(id => {
-                 return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        let seriesFav = this.state.seriesFav
-                        seriesFav.push(data);
-                        this.setState({ seriesFav: seriesFav, cargandoSeries: this.state.cargandoSeries + 1});
-                        }
-                    )
-                    .catch(err => console.log(err));
-            }); 
-        this.setState ({
+        seriesIds.map(id => {
+            return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`)
+                .then(res => res.json())
+                .then(data => {
+                    let seriesFav = this.state.seriesFav
+                    seriesFav.push(data);
+                    this.setState({ cargandoSeries: this.state.cargandoSeries + 1, seriesFav: seriesFav });
+                }
+                )
+                .catch(err => console.log(err));
+        });
+        this.setState({
             peliculasIds: peliculasIds,
             seriesIds: seriesIds
         })
     }
 
-    filtrarPeliculas (id) {
+    filtrarPeliculas(id) {
         let filtradosPeliculas = this.state.peliculasFav.filter(pelicula => pelicula.id !== id)
         this.setState({
             peliculasFav: filtradosPeliculas
         })
     }
 
-    filtrarSeries (id) {
+    filtrarSeries(id) {
         let filtradosSeries = this.state.seriesFav.filter(serie => serie.id !== id)
         this.setState({
             seriesFav: filtradosSeries
@@ -80,10 +80,10 @@ class Favoritos extends Component {
                         </div>
                     </div>
                     : this.state.cargandoPeliculas !== this.state.peliculasIds.length
-                        ? <p>Cargando...</p>
+                        ? <p className="cargando-favs"> Cargando... </p>
                         : <section className="row cards all-movies">
                             {this.state.peliculasFav.map(pelicula => (
-                                <PeliculasCards key={pelicula.id} pelicula={pelicula} filtrarPeliculas ={(unId)=> this.filtrarPeliculas(unId)}/>
+                                <PeliculasCards key={pelicula.id} pelicula={pelicula} filtrarPeliculas={(unId) => this.filtrarPeliculas(unId)} />
                             ))}
                         </section>}
                 <h2 className="fav">Series Favoritas</h2>
@@ -95,14 +95,14 @@ class Favoritos extends Component {
                         </div>
                     </div>
                     : this.state.cargandoSeries !== this.state.seriesIds.length
-                        ? <p>Cargando...</p>
+                        ? <p className="cargando-favs"> Cargando... </p>
                         : <section className="row cards all-movies">
                             {this.state.seriesFav.map(serie => (
-                                <SeriesCards key={serie.id} serie={serie} filtrarSeries ={(unId) => this.filtrarSeries(unId)}/>
+                                <SeriesCards key={serie.id} serie={serie} filtrarSeries={(unId) => this.filtrarSeries(unId)} />
                             ))}
                         </section>}
             </>
-    
+
         )
     }
 

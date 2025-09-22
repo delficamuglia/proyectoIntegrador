@@ -14,7 +14,7 @@ class Detalle extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         const tipo = this.props.match.params.tipo; //identificar pelicula o serie
-        const API_KEY = "cc9626b1c01cc6df9ddb2a9c71454130";
+        const apiKey = "cc9626b1c01cc6df9ddb2a9c71454130";
 
         let elementosFavoritos = []
         if (tipo === 'pelicula') {
@@ -38,9 +38,9 @@ class Detalle extends Component {
         let url = "";
 
         if (tipo === "pelicula") {
-            url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
+            url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
         } else if (tipo === "serie") {
-            url = `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`;
+            url = `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`;
         }
 
         fetch(url)
