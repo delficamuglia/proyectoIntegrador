@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PeliculasCards from "../Peliculas/PeliculasCards";
 import SeriesCards from "../Series/SeriesCards";
+import "./styles.css"
 import { Link } from "react-router-dom";
 // ver boton detalle
 
@@ -19,7 +20,7 @@ class Home extends Component {
 
     componentDidMount() {
     
-        fetch("https://api.themoviedb.org/3/discover/movie?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=1")
+        fetch("https://api.themoviedb.org/3/discover/movie?api_key=cc9626b1c01cc6df9ddb2a9c71454130&page=1")
           .then(response => response.json())
           .then(data => this.setState({
             peliculasDescubrir: data.results,
@@ -27,7 +28,7 @@ class Home extends Component {
           }))
           .catch(error => console.log(error));
 
-          fetch("https://api.themoviedb.org/3/discover/tv?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=1")
+          fetch("https://api.themoviedb.org/3/discover/tv?api_key=cc9626b1c01cc6df9ddb2a9c71454130&page=1")
           .then(response => response.json())
           .then(data => this.setState({
             seriesDescubrir: data.results,
@@ -43,7 +44,7 @@ class Home extends Component {
          
                 <>
                  <h2 className="alert alert-primary">Descubrir películas</h2>
-                 <Link to='/peliculas'> Ver todas </Link>
+                 <Link className="VerTodas" to='/peliculas'> Ver todas </Link>
                  <section className="row cards all-movies" id="movies">
             { 
             this.state.peliculasCargando ? ( 
@@ -55,10 +56,12 @@ class Home extends Component {
                 ))
               )
             }
+            
         </section>
+        
 
         <h2 className="alert alert-primary">Descubrir series</h2>
-        <Link to='/series'> Ver todas </Link>
+        <Link className="VerTodas" to='/series'> Ver todas </Link>
                  <section className="row cards all-movies" id="movies">
             {
               this.state.seriesCargando ? (
@@ -70,6 +73,7 @@ class Home extends Component {
               )
             }
         </section>
+        
         </>
             
         )

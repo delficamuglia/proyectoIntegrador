@@ -9,7 +9,8 @@ function Header() {
     return (
     <nav> 
       <ul className="logo">  
-        <li> MULTIFILMS </li> 
+       
+         <li><img className="logo" src="/img/logo.png" alt="logo"/></li>
          <li> <Link to="/"> Home </Link> </li>
          <li> <Link to='/favoritos'> Favoritos </Link></li>
          <li> <Link to='/peliculas'> Peliculas </Link> </li>

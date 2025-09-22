@@ -13,7 +13,6 @@
     padding: 0 10px;
     border: 1px solid #ccc;
     margin-right: 8px;
-    vertical-align: middle;
     line-height: 1;
     padding-bottom: 4px;
     width: 40%;
@@ -30,5 +29,6 @@
     border: 0;
     background: white;
     color: red;
+    border-radius: 15px;
 
   }
