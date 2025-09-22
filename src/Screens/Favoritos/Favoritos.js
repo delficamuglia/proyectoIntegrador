@@ -23,7 +23,7 @@ class Favoritos extends Component {
         peliculasIds = peliculasIds.filter(id => id); // elimina null, undefined o ""   
 
             peliculasIds.map(id => {
-               return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
+                return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
                     .then(res => res.json())
                     .then(data => {
                         let peliculasFav = this.state.peliculasFav
@@ -37,7 +37,7 @@ class Favoritos extends Component {
         seriesIds = seriesIds.filter(id => id); // elimina null, undefined o ""   
 
             seriesIds.map(id => {
-                return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`)
+                 return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`)
                     .then(res => res.json())
                     .then(data => {
                         let seriesFav = this.state.seriesFav
@@ -50,6 +50,20 @@ class Favoritos extends Component {
         this.setState ({
             peliculasIds: peliculasIds,
             seriesIds: seriesIds
+        })
+    }
+
+    filtrarPeliculas (id) {
+        let filtradosPeliculas = this.state.peliculasFav.filter(pelicula => pelicula.id !== id)
+        this.setState({
+            peliculasFav: filtradosPeliculas
+        })
+    }
+
+    filtrarSeries (id) {
+        let filtradosSeries = this.state.seriesFav.filter(serie => serie.id !== id)
+        this.setState({
+            seriesFav: filtradosSeries
         })
     }
 
@@ -69,7 +83,7 @@ class Favoritos extends Component {
                         ? <p>Cargando...</p>
                         : <section className="row cards all-movies">
                             {this.state.peliculasFav.map(pelicula => (
-                                <PeliculasCards key={pelicula.id} pelicula={pelicula}/>
+                                <PeliculasCards key={pelicula.id} pelicula={pelicula} filtrarPeliculas ={(unId)=> this.filtrarPeliculas(unId)}/>
                             ))}
                         </section>}
                 <h2 className="fav">Series Favoritas</h2>
@@ -84,7 +98,7 @@ class Favoritos extends Component {
                         ? <p>Cargando...</p>
                         : <section className="row cards all-movies">
                             {this.state.seriesFav.map(serie => (
-                                <SeriesCards key={serie.id} serie={serie} />
+                                <SeriesCards key={serie.id} serie={serie} filtrarSeries ={(unId) => this.filtrarSeries(unId)}/>
                             ))}
                         </section>}
             </>

@@ -16,8 +16,7 @@ function Header() {
          <li> <Link to='/peliculas'> Peliculas </Link> </li>
          <li> <Link to='/series'> Series </Link> </li>
      </ul> 
-     <Formulario />
-
+        <Formulario />
     </nav>
 )
 }

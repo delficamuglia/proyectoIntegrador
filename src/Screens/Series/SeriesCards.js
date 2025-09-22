@@ -49,6 +49,7 @@ class SeriesCards extends Component {
 
     quitarDeFavoritos() {
         let favoritos = []
+        const id = this.props.serie.id
 
         let seriesIds = localStorage.getItem("SeriesFavoritas")
         if (seriesIds !== null) {
@@ -61,6 +62,10 @@ class SeriesCards extends Component {
         this.setState({
             esFavorito: false
         })
+
+        if (this.props.filtrarSeries) {
+            this.props.filtrarSeries(id)
+        }
     }
 
     render() {

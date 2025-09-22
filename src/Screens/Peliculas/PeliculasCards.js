@@ -48,7 +48,7 @@ class PeliculasCards extends Component {
 
     quitarDeFavoritos(props) {
         let favoritos = []
-
+        const id = this.props.pelicula.id
         let peliculasIds = localStorage.getItem("PeliculasFavoritas")
         if (peliculasIds !== null) {
             favoritos = JSON.parse(peliculasIds)
@@ -60,6 +60,10 @@ class PeliculasCards extends Component {
         this.setState({
             esFavorito: false,
         })
+
+        if (this.props.filtrarPeliculas) {
+            this.props.filtrarPeliculas(id)
+        }
     }
 
     render() {
