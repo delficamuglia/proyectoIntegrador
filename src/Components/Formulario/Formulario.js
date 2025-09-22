@@ -41,16 +41,16 @@ class Formulario extends Component {
         return(
             <>
             
-            <form  onSubmit={(event)=>this.prevenirRecarga(event)}>
-                <input  type="text" onChange={(event)=> this.controlarCambios(event)} value={this.state.busqueda}/>
+            <form className="form" onSubmit={(event)=>this.prevenirRecarga(event)}>
+                <input className="text" type="text" onChange={(event)=> this.controlarCambios(event)} value={this.state.busqueda}/>
 
                 <h1> Peliculas </h1>
-                <input type="radio" name="tipo" onChange={(event)=> this.controlarTipo(event)} value='movie' />
+                <input className="radiobutton" type="radio" name="tipo" onChange={(event)=> this.controlarTipo(event)} value='movie' />
 
                 <h1> Series </h1>
-                <input type="radio" name="tipo" onChange={(event)=> this.controlarTipo(event)} value='tv' />
+                <input className="radiobutton" type="radio" name="tipo" onChange={(event)=> this.controlarTipo(event)} value='tv' />
                  
-                <button type="submit"> Buscar</button>
+                <button className="buscar" type="submit"> Buscar</button>
             </form>
             
             </>
