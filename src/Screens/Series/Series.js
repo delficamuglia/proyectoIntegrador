@@ -15,9 +15,9 @@ class Series extends Component {
   }
 
   componentDidMount() {
-    console.log("https://api.themoviedb.org/3/discover/tv?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=1");
+    console.log("https://api.themoviedb.org/3/discover/tv?api_key=cc9626b1c01cc6df9ddb2a9c71454130&page=1");
 
-    fetch("https://api.themoviedb.org/3/discover/tv?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=1")
+    fetch("https://api.themoviedb.org/3/discover/tv?api_key=cc9626b1c01cc6df9ddb2a9c71454130&page=1")
       .then(response => response.json())
       .then(data => this.setState({
         datos: data.results,
