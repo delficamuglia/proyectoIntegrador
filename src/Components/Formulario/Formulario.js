@@ -14,8 +14,14 @@ class Formulario extends Component {
 
     prevenirRecarga(event) {
         event.preventDefault()
+        if (this.state.tipo === ''){
+            let mensaje = 'Seleccionar pelicula o serie'
+            alert (mensaje)
+
+        } else  { 
         this.props.history.push("/busqueda/" + this.state.tipo + '/'+ this.state.busqueda)
-        console.log(event);
+        console.log(event); 
+    }
         
     }
 

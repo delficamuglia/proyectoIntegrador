@@ -23,7 +23,7 @@ class ResultadosBusqueda extends Component {
         url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`;
     } else if (tipo === "tv") {
         url = `https://api.themoviedb.org/3/search/tv?query=${query}&api_key=${API_KEY}`;
-    }
+    }  
     
   
     fetch(url)
