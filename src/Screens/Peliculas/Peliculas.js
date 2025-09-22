@@ -30,7 +30,7 @@ class Peliculas extends Component {
   }
 
   apiCall() {
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=cc9626b1c01cc6df9ddb2a9c71454130&language=es-ES&page=${this.state.page + 1}`)
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=cc9626b1c01cc6df9ddb2a9c71454130&page=${this.state.page + 1}`)
       .then(response => response.json())
       .then(data => this.setState(
         {
