@@ -13,11 +13,11 @@ class PeliculasCards extends Component {
     }
 
     componentDidMount() {
-        let peliculasIds = localStorage.getItem("PeliculasFavoritas") //buscamos la lista de favs
-        if (peliculasIds !== null) { //si hay akgo en localStorage
-            let favoritos = JSON.parse(peliculasIds) //convierte en string
-            if (favoritos.includes(String(this.props.pelicula.id))) { //verifica si ese ID está en la lista de favoritos
-                this.setState({ esFavorito: true }) //si la serie esta devuelve true 
+        let peliculasIds = localStorage.getItem("PeliculasFavoritas") 
+        if (peliculasIds !== null) { 
+            let favoritos = JSON.parse(peliculasIds) 
+            if (favoritos.includes(String(this.props.pelicula.id))) { 
+                this.setState({ esFavorito: true }) 
             }
         }
     }
@@ -77,7 +77,6 @@ class PeliculasCards extends Component {
                         <h5 className="card-title">{this.props.pelicula.original_title}</h5>
                         {this.state.verMas && <p className="texto-cards">{this.props.pelicula.overview}</p>}
                         <button className="btn btn-info btn-sm" onClick={() => this.cambiarEstado()}>{this.state.textoBoton}</button>
-                        {/*<Link to={`/RUTADETALLE/${this.props.pelicula.id}`} className="btn btn-primary">Ver más/>  */}
                         {this.state.esFavorito ?
                             <button className="btn btn-info btn-sm" onClick={() => this.quitarDeFavoritos()}>★</button>
                             : <button className="btn btn-info btn-sm" onClick={() => this.agregarAFavoritos()}>☆</button>

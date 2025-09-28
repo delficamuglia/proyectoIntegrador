@@ -13,7 +13,7 @@ class Detalle extends Component {
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        const tipo = this.props.match.params.tipo; //identificar pelicula o serie
+        const tipo = this.props.match.params.tipo; 
         const apiKey = "cc9626b1c01cc6df9ddb2a9c71454130";
 
         let elementosFavoritos = []
@@ -34,7 +34,6 @@ class Detalle extends Component {
             this.setState({ textoBoton: 'Agregar a favoritos' })
         }
 
-        //armamos url
         let url = "";
 
         if (tipo === "pelicula") {
@@ -69,7 +68,7 @@ class Detalle extends Component {
         }
         console.log(elementosFavoritos)
         let listaActualizada = elementosFavoritos
-        if (elementosFavoritos.includes(this.props.match.params.id)) { //si el id esta en la lista, lo quiero sacar
+        if (elementosFavoritos.includes(this.props.match.params.id)) { 
             listaActualizada = elementosFavoritos.filter(idFavorito => { return idFavorito !== this.props.match.params.id })
             this.setState({ textoBoton: 'Agregar a favoritos' })
         } else {

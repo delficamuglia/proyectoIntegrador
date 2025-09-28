@@ -20,7 +20,7 @@ class Favoritos extends Component {
 
     componentDidMount() {
         let peliculasIds = JSON.parse(localStorage.getItem('PeliculasFavoritas') || "[]")
-        peliculasIds = peliculasIds.filter(id => id); // elimina null, undefined o ""   
+        peliculasIds = peliculasIds.filter(id => id);   
 
         peliculasIds.map(id => {
             return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
@@ -34,7 +34,7 @@ class Favoritos extends Component {
                 .catch(err => console.log(err));
         });
         let seriesIds = JSON.parse(localStorage.getItem('SeriesFavoritas') || "[]")
-        seriesIds = seriesIds.filter(id => id); // elimina null, undefined o ""   
+        seriesIds = seriesIds.filter(id => id); 
 
         seriesIds.map(id => {
             return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`)

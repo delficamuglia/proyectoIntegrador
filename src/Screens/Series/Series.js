@@ -6,8 +6,8 @@ class Series extends Component {
     super(props)
     this.state = {
       datos: [],
-      busqueda: "", //esta variable contendrá aquello que buscará el usuario en el formulario. 
-      copiaDatos: [], //establecemos esta variable ya que cuando realizamos el filter en datos, si no guardamos una variable con los datos originales perderíamos los datos que trajimos en primer lugar. De esta manera, mantenemos los datos originales en copiaDatos.
+      busqueda: "", 
+      copiaDatos: [],
       page: 1,
       totalPages: "",
       carga: true 
@@ -34,7 +34,7 @@ class Series extends Component {
       .then(response => response.json())
       .then(data => this.setState(
         {
-          datos: [...this.state.datos, ...data.results], //mediante esta línea se muestran las series que ya teníamos en el array datos y se agregan las nuevas que vinieron en data.results.
+          datos: [...this.state.datos, ...data.results], 
           copiaDatos: [...this.state.datos, ...data.results],
           page: this.state.page + 1
         }))
@@ -47,7 +47,7 @@ class Series extends Component {
   }
 
   filtrarSeries(event) {
-    let busqueda = event.target.value //traemos la búsqueda del usuario mediante la propiedad event. Esta se pasa como parámetro en el evento, en este caso onChange y trae consigo diferentes propiedades. Target es una de ellas y muestra el <input> que hizo que se disparará el evento. Value nos traerá el valor dentro del input. 
+    let busqueda = event.target.value 
     this.setState({
       busqueda: busqueda,
       datos: this.state.copiaDatos.filter(serie => serie.original_name.toLowerCase().includes(busqueda.toLowerCase()))
@@ -66,12 +66,12 @@ class Series extends Component {
         </form>
         <section className="row cards all-series" id="series">
             {
-              this.state.carga ? ( //Si carga es true
-                <h3> Cargando... </h3> //mostramos el mensaje
-              ) : this.state.datos.length === 0 ? ( // si no esta cargando, resultados de busqueda = 0, por ende, mostramos mensaje de que no hay resultados de busqueda
+              this.state.carga ? ( 
+                <h3> Cargando... </h3> 
+              ) : this.state.datos.length === 0 ? ( 
                 <h3>No se encontraron resultados de búsqueda</h3> 
               ) : (
-                this.state.datos.map((serie) => ( //si que el length de los resultados es 0 es falso, y que la app esta cargando es falso entonces mapeamos los resultados y los mostramos 
+                this.state.datos.map((serie) => ( 
                   <SeriesCards key={serie.id} serie={serie} />
                 ))
               )

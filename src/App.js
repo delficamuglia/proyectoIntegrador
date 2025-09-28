@@ -8,7 +8,6 @@ import Header from "./Components/Header/Header"
 import ResultadosBusqueda from "./Screens/ResultadosBusqueda/ResultadosBusqueda"
 import Footer from "./Components/Footer/Footer"
 import Favoritos from './Screens/Favoritos/Favoritos';
-// exact!!!!!!!!
 
 import { Route, Switch } from "react-router-dom"
 
